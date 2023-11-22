@@ -76,11 +76,11 @@ namespace ConsoleApp2
             Console.WriteLine("(2) A program that finds the area of a triangle in C#\r");
             Console.WriteLine("------------------------\n");
 
-            // Ask the user to type the breadth.
+            // Ask the user to enter the base.
             Console.WriteLine("Enter the triangle's base, and then press Enter");
             num1 = Convert.ToDouble(Console.ReadLine());
 
-            // Ask the user to type the height.
+            // Ask the user to enter the height.
             Console.WriteLine("Enter the triangle's height, and then press Enter");
             num2 = Convert.ToDouble(Console.ReadLine());
 
