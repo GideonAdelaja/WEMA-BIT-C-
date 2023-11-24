@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Net.Mail;
+using System.Xml.Linq;
+using static ChurchMember;
 
 class ChurchMember
 {
@@ -20,6 +23,8 @@ class ChurchMember
         Active,
         Inactive
     }
+    // Record for member status
+    public record UpdateEmailAddress(string? newEmailAddress);
 
     // Delegate for member status change notification
     delegate void ChangeMemberStatus(int memberId, MemberStatus newStatus);
@@ -36,11 +41,12 @@ class ChurchMember
 
     // Methods
 
-    public void UpdateEmailAddress(string newEmailAddress)
+    /*public void UpdateEmailAddress(string newEmailAddress)
     {
         emailAddress = newEmailAddress;
         Console.WriteLine($"{name}'s email address has been updated to {emailAddress}");
-    }
+    }*/
+
     public void Donate(double amount)
     {
         Console.WriteLine($"{name} donated {amount}Naira to the church.");
@@ -74,7 +80,9 @@ class Program
         Console.WriteLine($"{newMember.Name} is a new member of our church \nHis Email Address is {newMember.EmailAddress} \nHe joined {newMember.JoinDate}");
 
         // Update member email address
-        newMember.UpdateEmailAddress("temiemma@gmail.com");
+        UpdateEmailAddress updateEmail = new UpdateEmailAddress("temiemma@gmail.com");
+        Console.WriteLine($"{newMember.Name}'s email address has been updated to {updateEmail.newEmailAddress}");
+        
 
         // Make a donation
         newMember.Donate(1500000.00);
@@ -82,7 +90,7 @@ class Program
         //Show member details
         Console.WriteLine($"The Latest Record of {newMember.Name} are:");
         Console.WriteLine($"\tMember ID: {newMember.MemberId}");
-        Console.WriteLine($"\tEmail Address: {newMember.EmailAddress}");
+        Console.WriteLine($"\tEmail Address: {updateEmail.newEmailAddress}");
         Console.WriteLine($"\tJoin Date: {newMember.JoinDate}");
 
     }
